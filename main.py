@@ -51,8 +51,9 @@ from bs4 import BeautifulSoup
 
 
 # --- Function for Svitozar (Ed) ---
-def save_qoutes_to_disk():
-	
+def save_qoutes_to_disk(data):
+	data_as_a_file = json.dumps(data, indent=4)
+	return data_as_a_file
 # TODO: Put your save_quotes_to_disk function here.
 # This function should take the list of quotes and a filename.
 # It should save the quotes to a JSON or CSV file.
