@@ -111,19 +111,25 @@ if __name__ == "__main__":
 # If the file exists, it returns the list of quotes from the file.
 # If the file does not exist, it returns an empty list [].
 
-def load_quotes_from_disk
+import os
+def load_quotes_from_disk(file_name):
 	"""
     Takes a filename from https://quotes.toscrape.com (the quote website).
     If file exists, returns the list of quotes from file. If non-existent, returns empty list.
     """
+	
+    # Check if the file exists first
+    if not os.path.exists(file_name):
+        print(f"File '{file_name}' not found. Returning empty data.")
+        return {}  # return empty if not found
 
-website_url = "https://quotes.toscrape.com"
-    next_page = "/"
-    all_quotes = []
-
-
-
-
+    try:
+        with open(file_name, 'r') as infile:
+            data = json.load(infile)  # read and parse JSON
+            return data
+    except (IOError, json.JSONDecodeError) as e:
+        print(f"Error reading file '{file_name}': {e}")
+        return {}  # return empty if reading or parsing fails
 
 # --- Function for Alvin and Pearl ---
 # TODO: Put your get_quotes_by_tag function here.
