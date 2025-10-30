@@ -93,11 +93,6 @@ def scrape_all_quotes():
 
     print(f"Scraped {len(all_quotes)} quotes total.")
     return all_quotes
-if __name__ == "__main__":
-    quotes = scrape_all_quotes()
-    print(quotes[:3])  # Print first 3 quotes as a test
-
-
 
 # --- Function for Svitozar (Ed) ---
 # TODO: Put your save_quotes_to_disk function here.
@@ -116,7 +111,7 @@ def save_quotes_to_disk(data):
         print(f"Error saving JSON data: {e}")
   
       
-    return data_as_a_file
+    # return data_as_a_file --valdez commented this out
 
 # --- Function for David ---
 # TODO: Put your load_quotes_from_disk function here.
@@ -124,12 +119,12 @@ def save_quotes_to_disk(data):
 # If the file exists, it returns the list of quotes from the file.
 # If the file does not exist, it returns an empty list [].
 
-import os
 def load_quotes_from_disk(file_name):
-	"""
-    Takes a filename from https://quotes.toscrape.com (the quote website).
-    If file exists, returns the list of quotes from file. If non-existent, returns empty list.
-    """
+    import os
+	# """
+    # Takes a filename from https://quotes.toscrape.com (the quote website).
+    # If file exists, returns the list of quotes from file. If non-existent, returns empty list.
+    # """
 	
     # Check if the file exists first
     if not os.path.exists(file_name):
@@ -167,31 +162,10 @@ def get_quotes_by_tag(quotes_list, tag=None):
 # TODO: Put your get_random_quote function here.
 # This function should take the list of quotes.
 # It picks one random quote and prints it.
-import random
 def get_random_quote(quotes):
-	quote = random.choice(quotes)
-	print(f'"{quote["text"]}" — {quote["author"]}')
-multi_quote = [
-	{
-	  'text': 'The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.',
-	  'author': 'Albert Einstein',
-	},
-	{
-		'text': 'fail. fail. fail. Wow, I just learned 3 new ways on how not to do something!',
-		'author': 'Amaurys Valdez',
-	},
-	{
-		'text': 'I Am Groot',
-		'author': 'Groot',
-	},
-]
-get_random_quote(multi_quote)
-
-
-
-
-
-
+    import random
+    quote = random.choice(quotes)
+    print(f'"{quote["text"]}" — {quote["author"]}')
 
 
 
@@ -202,7 +176,8 @@ get_random_quote(multi_quote)
 # SECTION 3: MAIN PROGRAM
 # ==================================
 if __name__ == "__main__":
-	print("this is a test")
-	print()
+    group_introductions()
+    quotes = scrape_all_quotes()
+    save_quotes_to_disk(quotes)
+    file_name = input("Enter the file name to open: ")
 
-# Team Lead/Integrator: Write the main logic here that calls the functions.
