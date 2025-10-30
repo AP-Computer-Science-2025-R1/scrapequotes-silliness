@@ -167,6 +167,25 @@ def get_quotes_by_tag(quotes_list, tag=None):
 # TODO: Put your get_random_quote function here.
 # This function should take the list of quotes.
 # It picks one random quote and prints it.
+import random
+def get_random_quote(quotes):
+	quote = random.choice(quotes)
+	print(f'"{quote["text"]}" — {quote["author"]}')
+multi_quote = [
+	{
+	  'text': 'The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.',
+	  'author': 'Albert Einstein',
+	},
+	{
+		'text': 'fail. fail. fail. Wow, I just learned 3 new ways on how not to do something!',
+		'author': 'Amaurys Valdez',
+	},
+	{
+		'text': 'I Am Groot',
+		'author': 'Groot',
+	},
+]
+get_random_quote(multi_quote)
 
 
 
