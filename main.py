@@ -144,10 +144,23 @@ def load_quotes_from_disk(file_name):
         print(f"Error reading file '{file_name}': {e}")
         return {}  # return empty if reading or parsing fails
 
+
 # --- Function for Alvin and Pearl ---
 # TODO: Put your get_quotes_by_tag function here.
 # This function should take the list of quotes.
 # It asks the user for a tag and prints any matching quotes.
+def get_quotes_by_tag(quotes_list, tag=None):
+    if tag is None:
+        tag = input("Enter a tag: ").strip().lower()
+
+    matches = [q for q in quotes_list if tag in [t.lower() for t in q.get("tags", [])]]
+
+    if matches:
+        for q in matches:
+            print(f"\"{q['text']}\" - {q['author']}\n")
+    else:
+        print(f"No quotes found with tag '{tag}'.")
+
 
 
 # --- Function for Ronny ---
