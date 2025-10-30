@@ -108,7 +108,20 @@ if __name__ == "__main__":
 # TODO: Put your save_quotes_to_disk function here.
 # This function should take the list of quotes and a filename.
 # It should save the quotes to a JSON or CSV file.
-
+def save_quotes_to_disk(data):
+	# Convert the data to a JSON string
+    import datetime
+    timestamp_for_filename = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")  
+    file_name = f"data_{timestamp_for_filename}.json"
+    try:
+        with open(file_name, 'w') as outfile:
+           data_as_a_file = json.dump(data, outfile, indent=4) # indent for pretty printing
+           return data_as_a_file
+    except IOError as e:
+        print(f"Error saving JSON data: {e}")
+  
+      
+    return data_as_a_file
 
 # --- Function for David ---
 # TODO: Put your load_quotes_from_disk function here.
@@ -116,11 +129,43 @@ if __name__ == "__main__":
 # If the file exists, it returns the list of quotes from the file.
 # If the file does not exist, it returns an empty list [].
 
+import os
+def load_quotes_from_disk(file_name):
+	"""
+    Takes a filename from https://quotes.toscrape.com (the quote website).
+    If file exists, returns the list of quotes from file. If non-existent, returns empty list.
+    """
+	
+    # Check if the file exists first
+    if not os.path.exists(file_name):
+        print(f"File '{file_name}' not found. Returning empty data.")
+        return {}  # return empty if not found
+
+    try:
+        with open(file_name, 'r') as infile:
+            data = json.load(infile)  # read and parse JSON
+            return data
+    except (IOError, json.JSONDecodeError) as e:
+        print(f"Error reading file '{file_name}': {e}")
+        return {}  # return empty if reading or parsing fails
+
 
 # --- Function for Alvin and Pearl ---
 # TODO: Put your get_quotes_by_tag function here.
 # This function should take the list of quotes.
 # It asks the user for a tag and prints any matching quotes.
+def get_quotes_by_tag(quotes_list, tag=None):
+    if tag is None:
+        tag = input("Enter a tag: ").strip().lower()
+
+    matches = [q for q in quotes_list if tag in [t.lower() for t in q.get("tags", [])]]
+
+    if matches:
+        for q in matches:
+            print(f"\"{q['text']}\" - {q['author']}\n")
+    else:
+        print(f"No quotes found with tag '{tag}'.")
+
 
 
 # --- Function for Ronny ---
