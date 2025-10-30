@@ -35,10 +35,16 @@ import json
 import random
 from bs4 import BeautifulSoup
 
+# SECTION 1: IMPORTS
+from bs4 import BeautifulSoup
+import requests
+
+
 # ==================================
 # SECTION 2: FUNCTION DEFINITIONS
 # ==================================
 
+# --- Function for Akib ---
 def group_introductions():
 	print("Group members and their roles")
 	print("   ")
@@ -143,9 +149,8 @@ def save_qoutes_to_disk(data):
 # ==================================
 # SECTION 3: MAIN PROGRAM
 # ==================================
-
-
-# Team Lead/Integrator: Write the main logic here that calls the functions.
 if __name__ == "__main__":
 	print("this is a test")
 	print()
+
+# Team Lead/Integrator: Write the main logic here that calls the functions.
