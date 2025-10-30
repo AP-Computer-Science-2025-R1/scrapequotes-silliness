@@ -3,7 +3,6 @@
 #
 # Team: Silliness
 # Members: Arshia, Pearl, Alvin, David, Svitozar (Ed), Ronny, Akib
-
 # ==================================
 
 single_quote = {
@@ -45,6 +44,9 @@ import requests
 # ==================================
 
 # --- Function for Akib ---
+# TODO: Put your group_introductions() function here.
+# This function should print an introduction of the group, and ask the user for inputting the date.
+# It should return the name of our group members and an input asking for the user to input the date.
 def group_introductions():
 	print("Group members and their roles")
 	print("   ")
@@ -98,7 +100,10 @@ if __name__ == "__main__":
 
 
 # --- Function for Svitozar (Ed) ---
-def save_qoutes_to_disk(data):
+# TODO: Put your save_quotes_to_disk function here.
+# This function should take the list of quotes and a filename.
+# It should save the quotes to a JSON or CSV file.
+def save_quotes_to_disk(data):
 	# Convert the data to a JSON string
     import datetime
     timestamp_for_filename = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")  
@@ -112,10 +117,6 @@ def save_qoutes_to_disk(data):
   
       
     return data_as_a_file
-# TODO: Put your save_quotes_to_disk function here.
-# This function should take the list of quotes and a filename.
-# It should save the quotes to a JSON or CSV file.
-
 
 # --- Function for David ---
 # TODO: Put your load_quotes_from_disk function here.
@@ -123,6 +124,25 @@ def save_qoutes_to_disk(data):
 # If the file exists, it returns the list of quotes from the file.
 # If the file does not exist, it returns an empty list [].
 
+import os
+def load_quotes_from_disk(file_name):
+	"""
+    Takes a filename from https://quotes.toscrape.com (the quote website).
+    If file exists, returns the list of quotes from file. If non-existent, returns empty list.
+    """
+	
+    # Check if the file exists first
+    if not os.path.exists(file_name):
+        print(f"File '{file_name}' not found. Returning empty data.")
+        return {}  # return empty if not found
+
+    try:
+        with open(file_name, 'r') as infile:
+            data = json.load(infile)  # read and parse JSON
+            return data
+    except (IOError, json.JSONDecodeError) as e:
+        print(f"Error reading file '{file_name}': {e}")
+        return {}  # return empty if reading or parsing fails
 
 # --- Function for Alvin and Pearl ---
 # TODO: Put your get_quotes_by_tag function here.
