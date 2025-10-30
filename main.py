@@ -1,4 +1,3 @@
- main
 # ==================================
 #      Python Quote Scraper
 #
@@ -44,7 +43,6 @@ import requests
 # SECTION 2: FUNCTION DEFINITIONS
 # ==================================
 
- main
 # --- Function for Akib ---
 # TODO: Put your group_introductions() function here.
 # This function should print an introduction of the group, and ask the user for inputting the date.
@@ -63,9 +61,6 @@ def group_introductions():
 	print("Today's date is:", date) 
 
 # --- Function for Alvin and Pearl ---
-if __name__ == "__main__":
-	print("this is a test")
-	print()
 
 def scrape_all_quotes():
     """
@@ -187,6 +182,8 @@ def get_quotes_by_tag(quotes_list, tag=None):
 # ==================================
 # SECTION 3: MAIN PROGRAM
 # ==================================
-
+if __name__ == "__main__":
+	print("this is a test")
+	print()
 
 # Team Lead/Integrator: Write the main logic here that calls the functions.
